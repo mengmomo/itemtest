@@ -1,0 +1,1307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - biz@localhost" uuid="c49eadc7-64a2-44ec-b7e0-ed95b93a7e37">
+    <database-info product="MySQL" version="5.6.21-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="biz"/>
+    <table name="rf_autobid_repaymethod" schema="" catalog="biz" type="TABLE">
+      <column name="USER_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REPAYMENT_METHOD" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <foreign-key name="FK_RF_AUTOBID_REPAYMETHOD_USER_ID" columns="USER_ID" ref-table="tb_user_auto_bid" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_RF_AUTOBID_REPAYMETHOD_USER_ID" unique="false" columns="USER_ID"/>
+    </table>
+    <table name="rf_emp_role" schema="" catalog="biz" type="TABLE">
+      <column name="ROLE_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="EMP_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ROLE_ID,EMP_ID"/>
+      <foreign-key name="FK_RF_EMP_ROLE_EMP_ID" columns="EMP_ID" ref-table="tb_employee" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_RF_EMP_ROLE_ROLE_ID" columns="ROLE_ID" ref-table="tb_role" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_RF_EMP_ROLE_EMP_ID" unique="false" columns="EMP_ID"/>
+    </table>
+    <table name="rf_privilege" schema="" catalog="biz" type="TABLE">
+      <column name="Role_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PRIVILEGES" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <foreign-key name="FK_RF_PRIVILEGE_Role_ID" columns="Role_ID" ref-table="tb_role" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_RF_PRIVILEGE_Role_ID" unique="false" columns="Role_ID"/>
+    </table>
+    <table name="rf_request_mortgagetype" schema="" catalog="biz" type="TABLE">
+      <column name="REQUEST_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MORTGAGE_TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <foreign-key name="FK_RF_REQUEST_MORTGAGETYPE_REQUEST_ID" columns="REQUEST_ID" ref-table="tb_loanrequest" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_RF_REQUEST_MORTGAGETYPE_REQUEST_ID" unique="false" columns="REQUEST_ID"/>
+    </table>
+    <table name="tb_branch" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ClientCode" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CODE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PARENTID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TIMELASTUPDATED" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CITY" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LATITUDE" sqlType="DECIMAL" precision="12" scale="8" nullable="true" jdbcType="3"/>
+      <column name="LONGITUDE" sqlType="DECIMAL" precision="12" scale="8" nullable="true" jdbcType="3"/>
+      <column name="PROVINCE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ROOMADDRESS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="STREETADDRESS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONTACTPERSON_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PRINCIPAL_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_BRANCH_CONTACTPERSON_ID" columns="CONTACTPERSON_ID" ref-table="tb_employee" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_TB_BRANCH_PRINCIPAL_ID" columns="PRINCIPAL_ID" ref-table="tb_employee" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_TB_EMPLOYEE_BRANCH_ID" table="tb_employee" schema="" catalog="biz" columns="BRANCH_ID"/>
+      <index name="UNQ_TB_BRANCH_0" unique="true" columns="ClientCode,CODE"/>
+      <index name="UNQ_TB_BRANCH_1" unique="true" columns="ClientCode,NAME"/>
+      <index name="FK_TB_BRANCH_CONTACTPERSON_ID" unique="false" columns="CONTACTPERSON_ID"/>
+      <index name="FK_TB_BRANCH_PRINCIPAL_ID" unique="false" columns="PRINCIPAL_ID"/>
+    </table>
+    <table name="tb_certificate" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AUDITINFO" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <column name="AUDITOR" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TIMELASTUPDATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SCORE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="USER_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_CERTIFICATE_USER_ID" columns="USER_ID" ref-table="tb_user_credit" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_TB_CERTIFICATE_RECORD_CERTIFICATE_ID" table="tb_certificate_record" schema="" catalog="biz" columns="CERTIFICATE_ID"/>
+      <exported-key name="FK_TB_PROOF_CERTIFICATE_ID" table="tb_proof" schema="" catalog="biz" columns="CERTIFICATE_ID"/>
+      <index name="UNQ_TB_CERTIFICATE_0" unique="true" columns="USER_ID,TYPE"/>
+    </table>
+    <table name="tb_certificate_record" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AUDITINFO" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <column name="AUDITOR" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="SCORE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="CERTIFICATE_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_CERTIFICATE_RECORD_CERTIFICATE_ID" columns="CERTIFICATE_ID" ref-table="tb_certificate" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_TB_CERTIFICATE_RECORD_CERTIFICATE_ID" unique="false" columns="CERTIFICATE_ID"/>
+    </table>
+    <table name="tb_claim" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="BALANCE" sqlType="DECIMAL" precision="38" scale="0" nullable="false" jdbcType="3"/>
+      <column name="BORROWER_INFO" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="CONTRACT_CODE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONTRACT_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="END_DATE" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="RISK_CONTROL_INFO" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="SIGNED_ADDRESS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SIGNED_DATE" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="START_DATE" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TOTAL_AMOUNT" sqlType="DECIMAL" precision="38" scale="0" nullable="false" jdbcType="3"/>
+      <column name="USER_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="FK_TB_CLAIM_REPAYMENT_PLAN_CLAIM_ID" table="tb_claim_repayment_plan" schema="" catalog="biz" columns="CLAIM_ID"/>
+    </table>
+    <table name="tb_claim_repayment_plan" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PERIOD" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="REPAYMENT_AMOUNT" sqlType="DECIMAL" precision="38" scale="0" nullable="false" jdbcType="3"/>
+      <column name="REPAYMENT_DATE" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="CLAIM_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_CLAIM_REPAYMENT_PLAN_CLAIM_ID" columns="CLAIM_ID" ref-table="tb_claim" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_TB_CLAIM_REPAYMENT_PLAN_CLAIM_ID" unique="false" columns="CLAIM_ID"/>
+    </table>
+    <table name="tb_client" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CODE" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="INTERNALEMAILINDICATORS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LOGO" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MOBILE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SECURE" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="SHORTNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SUPPORTEMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SUPPORTPHONE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TITLE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="URL" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <index name="CODE" unique="true" columns="CODE"/>
+      <index name="NAME" unique="true" columns="NAME"/>
+      <index name="SHORTNAME" unique="true" columns="SHORTNAME"/>
+    </table>
+    <table name="tb_client_fund_record" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ACCOUNT" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OPERATION" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ORDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TRANSACTIONID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="USERID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ENTITYID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REALM" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="tb_corporation_user" schema="" catalog="biz" type="TABLE">
+      <column name="BUSICODE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CATEGORY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LEGALPERSONID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ORGCODE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SHORTNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TAXCODE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="USER_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="RTPO" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="CONTRACTSEALCODE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="USER_ID"/>
+      <foreign-key name="FK_TB_CORPORATION_USER_USER_ID" columns="USER_ID" ref-table="tb_user" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_TB_CORPORATION_USER_INFO_USER_ID" table="tb_corporation_user_info" schema="" catalog="biz" columns="USER_ID"/>
+      <index name="UNQ_TB_CORPORATION_USER_0" unique="true" columns="NAME"/>
+      <index name="UNQ_TB_CORPORATION_USER_1" unique="true" columns="ORGCODE"/>
+      <index name="UNQ_TB_CORPORATION_USER_2" unique="true" columns="BUSICODE"/>
+      <index name="UNQ_TB_CORPORATION_USER_3" unique="true" columns="TAXCODE"/>
+    </table>
+    <table name="tb_corporation_user_info" schema="" catalog="biz" type="TABLE">
+      <column name="ADDRESS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BUSINESSSCOPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CONTACTEMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CONTACTPERSION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CONTACTPHONE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REGISTEREDCAPITAL" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3"/>
+      <column name="REGISTEREDLOCATION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TIMEESTABLISHED" sqlType="LONGBLOB" precision="2147483647" scale="0" nullable="true" jdbcType="-4"/>
+      <column name="URL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="USER_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="BACKGROUND" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CREDITRANK" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="USER_ID"/>
+      <foreign-key name="FK_TB_CORPORATION_USER_INFO_USER_ID" columns="USER_ID" ref-table="tb_corporation_user" ref-schema="" ref-catalog="biz" ref-columns="USER_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tb_crowdfunding_favorite" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PROJECT_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="USER_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <index name="UNQ_TB_CROWDFUNDING_FAVORITE_0" unique="true" columns="PROJECT_ID,USER_ID"/>
+    </table>
+    <table name="tb_crowdfunding_invest" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="DELIVERYDETAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MESSAGE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REWARDID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SUBMITTIME" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="USERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PROJECT_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DELIVERYFEE" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3"/>
+      <column name="ORDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_CROWDFUNDING_INVEST_PROJECT_ID" columns="PROJECT_ID" ref-table="tb_crowdfunding_project" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_TB_CROWDFUNDING_INVEST_INFO_ID" table="tb_crowdfunding_invest_info" schema="" catalog="biz" columns="ID"/>
+      <index name="UNQ_TB_CROWDFUNDING_INVEST_0" unique="true" columns="ORDERID"/>
+      <index name="FK_TB_CROWDFUNDING_INVEST_PROJECT_ID" unique="false" columns="PROJECT_ID"/>
+    </table>
+    <table name="tb_crowdfunding_invest_info" schema="" catalog="biz" type="TABLE">
+      <column name="CONTACT" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NEEDINVOICE" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="REALNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SHIPPINGADDRESS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_CROWDFUNDING_INVEST_INFO_ID" columns="ID" ref-table="tb_crowdfunding_invest" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tb_crowdfunding_project" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CATEGORY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DETAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FINISHTIME" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="GOALAMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="INTRODUCTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LOCATION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OPENTIME" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="RAISEAMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3"/>
+      <column name="RAISENUMBER" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SUBCATEGORY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TIMEOUT" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TITLE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="USERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="VIDEOURL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FAVORITE" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="LOANAMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3"/>
+      <column name="NOREWARD" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="ACKNOWLEDGEMENT" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BLOG" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DETAILDESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MOBILE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="QUALIFICATION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SELFDESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="WEBSITE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ORDINAL" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="FK_TB_CROWDFUNDING_INVEST_PROJECT_ID" table="tb_crowdfunding_invest" schema="" catalog="biz" columns="PROJECT_ID"/>
+      <exported-key name="FK_TB_CROWDFUNDING_PROJECT_LOAN_PROJECT_ID" table="tb_crowdfunding_project_loan" schema="" catalog="biz" columns="PROJECT_ID"/>
+      <exported-key name="FK_TB_CROWDFUNDING_REWARD_PROJECT_ID" table="tb_crowdfunding_reward" schema="" catalog="biz" columns="PROJECT_ID"/>
+    </table>
+    <table name="tb_crowdfunding_project_loan" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LEFTAMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="LOANAMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="ORDINAL" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="PROJECT_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ORDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ORDER_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_CROWDFUNDING_PROJECT_LOAN_PROJECT_ID" columns="PROJECT_ID" ref-table="tb_crowdfunding_project" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UNQ_TB_CROWDFUNDING_PROJECT_LOAN_0" unique="true" columns="PROJECT_ID,ORDINAL"/>
+    </table>
+    <table name="tb_crowdfunding_reward" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="DELIVERYDETAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="HARDLIMIT" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="LIMITNUMBER" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="RAISEAMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3"/>
+      <column name="RAISENUMBER" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="PROJECT_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DELIVERYTIME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_CROWDFUNDING_REWARD_PROJECT_ID" columns="PROJECT_ID" ref-table="tb_crowdfunding_project" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_TB_CROWDFUNDING_REWARD_PROJECT_ID" unique="false" columns="PROJECT_ID"/>
+    </table>
+    <table name="tb_disburse_record" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMPLOYEEID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="REPAYMENT_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_DISBURSE_RECORD_REPAYMENT_ID" columns="REPAYMENT_ID" ref-table="tb_loan_repayment" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_TB_DISBURSE_RECORD_REPAYMENT_ID" unique="false" columns="REPAYMENT_ID"/>
+    </table>
+    <table name="tb_employee" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ClientCode" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="EMP_ID" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ENABLED" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="IDNUMBER" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LASTLOGINDATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="LOGIN_NAME" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="MOBILE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NAME" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NEEDCHANGEPASSWORD" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="PASSPHRASE" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="REGISTERDATE" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="SALT" sqlType="VARCHAR" precision="120" scale="0" nullable="false" jdbcType="12"/>
+      <column name="BRANCH_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_EMPLOYEE_BRANCH_ID" columns="BRANCH_ID" ref-table="tb_branch" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_RF_EMP_ROLE_EMP_ID" table="rf_emp_role" schema="" catalog="biz" columns="EMP_ID"/>
+      <exported-key name="FK_TB_BRANCH_CONTACTPERSON_ID" table="tb_branch" schema="" catalog="biz" columns="CONTACTPERSON_ID"/>
+      <exported-key name="FK_TB_BRANCH_PRINCIPAL_ID" table="tb_branch" schema="" catalog="biz" columns="PRINCIPAL_ID"/>
+      <exported-key name="FK_TB_EMPLOYEE_LOGIN_RECORD_EMPLOYEE_ID" table="tb_employee_login_record" schema="" catalog="biz" columns="EMPLOYEE_ID"/>
+      <index name="UNQ_TB_EMPLOYEE_0" unique="true" columns="ClientCode,LOGIN_NAME"/>
+      <index name="UNQ_TB_EMPLOYEE_1" unique="true" columns="ClientCode,EMP_ID"/>
+      <index name="FK_TB_EMPLOYEE_BRANCH_ID" unique="false" columns="BRANCH_ID"/>
+    </table>
+    <table name="tb_employee_login_record" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CREDENTIAL" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LOGININFO" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LOGINTIME" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="SOURCE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SUCCESS" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="EMPLOYEE_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_EMPLOYEE_LOGIN_RECORD_EMPLOYEE_ID" columns="EMPLOYEE_ID" ref-table="tb_employee" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_TB_EMPLOYEE_LOGIN_RECORD_EMPLOYEE_ID" unique="false" columns="EMPLOYEE_ID"/>
+    </table>
+    <table name="tb_fee_item" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CATEGORY" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="RATE" sqlType="DECIMAL" precision="5" scale="4" nullable="false" jdbcType="3"/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TIMELASTUPDATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="USERID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <index name="UNQ_TB_FEE_ITEM_0" unique="true" columns="CATEGORY"/>
+    </table>
+    <table name="tb_fssaccount" schema="" catalog="biz" type="TABLE">
+      <column name="ACCOUNTID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="BALANCE" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="ClientCode" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TIMEUPDATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TOTALDEPOSIT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="TOTALPROFIT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="TOTALWITHDRAW" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="USERID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ACCOUNTID"/>
+      <index name="UNQ_TB_FSSACCOUNT_0" unique="true" columns="ClientCode,USERID"/>
+      <index name="UNQ_TB_FSSACCOUNT_1" unique="true" columns="ClientCode,ACCOUNTID"/>
+    </table>
+    <table name="tb_fuiou_collectrecord" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ACCOUNTNAME" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ACCOUNTNO" sqlType="VARCHAR" precision="28" scale="0" nullable="true" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="BANKNAME" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COLLECTRECORDSTATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ORDERDATE" sqlType="VARCHAR" precision="8" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ORDERNO" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="REMOTEREASON" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REMOTERESULT" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REMOTESTATUS" sqlType="VARCHAR" precision="8" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REPAYMENTID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="RETURNCODE" sqlType="VARCHAR" precision="6" scale="0" nullable="true" jdbcType="12"/>
+      <column name="RETURNMEMO" sqlType="VARCHAR" precision="1024" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TIMELASTUPDATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="USERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="tb_fund_account" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DEFAULTACCOUNT" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="VALID" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="ACCOUNT" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="BANK" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="BRANCH" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LOCATION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="USER_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_FUND_ACCOUNT_USER_ID" columns="USER_ID" ref-table="tb_user_fund" ref-schema="" ref-catalog="biz" ref-columns="USERID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_TB_FUND_RECORD_FUND_ACCOUNT_ID" table="tb_fund_record" schema="" catalog="biz" columns="FUND_ACCOUNT_ID"/>
+      <index name="UNQ_TB_FUND_ACCOUNT_0" unique="true" columns="ACCOUNT"/>
+      <index name="FK_TB_FUND_ACCOUNT_USER_ID" unique="false" columns="USER_ID"/>
+    </table>
+    <table name="tb_fund_account_request" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ACCOUNT" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="BANK" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ORDERID" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMESUBMIT" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="USERID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <index name="USERID" unique="false" columns="USERID"/>
+    </table>
+    <table name="tb_fund_record" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DTYPE" sqlType="VARCHAR" precision="31" scale="0" nullable="true" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OPERATION" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ORDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TRANSACTIONID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ENTITYID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REALM" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FUND_ACCOUNT_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <column name="USER_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="RECORDPRIV" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_FUND_RECORD_FUND_ACCOUNT_ID" columns="FUND_ACCOUNT_ID" ref-table="tb_fund_account" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_TB_FUND_RECORD_USER_ID" columns="USER_ID" ref-table="tb_user_fund" ref-schema="" ref-catalog="biz" ref-columns="USERID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UNQ_TB_FUND_RECORD_0" unique="true" columns="USER_ID,TYPE,ORDERID"/>
+      <index name="FK_TB_FUND_RECORD_FUND_ACCOUNT_ID" unique="false" columns="FUND_ACCOUNT_ID"/>
+      <index name="idx_orderId" unique="false" columns="ORDERID"/>
+      <index name="idx_type" unique="false" columns="TYPE"/>
+      <index name="idx_userId" unique="false" columns="USER_ID"/>
+    </table>
+    <table name="tb_invest" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="BIDMETHOD" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LOANID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="RATE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="REPAYMETHOD" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SUBMITTIME" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="USERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DAYS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MONTHS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="YEARS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="PUPOSE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PURPOSE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="FK_TB_INVEST_REPAYMENT_INVEST_ID" table="tb_invest_repayment" schema="" catalog="biz" columns="INVEST_ID"/>
+      <index name="idx_status" unique="false" columns="STATUS"/>
+      <index name="idx_userid" unique="false" columns="USERID"/>
+    </table>
+    <table name="tb_invest_repayment" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CURRENTPERIOD" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="REPAYAMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3"/>
+      <column name="REPAYDATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SOURCE_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SOURCE_REALM" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="AMOUNTINTEREST" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="AMOUNTOUTSTANDING" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="AMOUNTPRINCIPAL" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="DUEDATE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="INVEST_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_INVEST_REPAYMENT_INVEST_ID" columns="INVEST_ID" ref-table="tb_invest" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UNQ_TB_INVEST_REPAYMENT_0" unique="true" columns="INVEST_ID,CURRENTPERIOD"/>
+    </table>
+    <table name="tb_loan" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="AUTOSPLITTED" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="BID_AMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="BID_NUMBER" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="METHOD" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="MORTGAGED" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="ORDINAL" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="RATE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="REWARDED" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMECLEARED" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TIMEFINISHED" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TIMEOPEN" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TIMEOUT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="TIMESETTLED" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TITLE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DAYS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MONTHS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="YEARS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="REQUEST_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_LOAN_REQUEST_ID" columns="REQUEST_ID" ref-table="tb_loanrequest" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_TB_LOAN_REPAYMENT_LOAN_ID" table="tb_loan_repayment" schema="" catalog="biz" columns="LOAN_ID"/>
+      <index name="UNQ_TB_LOAN_0" unique="true" columns="REQUEST_ID,ORDINAL"/>
+      <index name="idx_STATUS" unique="false" columns="STATUS"/>
+    </table>
+    <table name="tb_loan_order" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="INVESTID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LOANID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ORDERDATE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ORDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STAT" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <index name="UNQ_TB_LOAN_ORDER_0" unique="true" columns="ORDERID"/>
+      <index name="UNQ_TB_LOAN_ORDER_1" unique="true" columns="INVESTID"/>
+    </table>
+    <table name="tb_loan_recommend" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LOANID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12" remarks="5qCH55qESUQ="/>
+      <column name="ICON_URL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" remarks="5Zu+5qCH"/>
+      <column name="TYPE" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12" remarks="57G75Z6L77ya55uu5YmN5pyJTkVXKOaWsOaJi+aOqOiNkCnvvIxOT1JNQUwo5pmu6YCa5qCH5o6o6I2QKQ=="/>
+      <column name="TIME_START" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" remarks="5byA5aeL5o6o6I2Q5pe26Ze0"/>
+      <column name="TIME_END" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93" remarks="57uT5p2f5o6o6I2Q5pe26Ze0"/>
+      <column name="ENABLE" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" remarks="5pyJ5pWI5qCH5b+X"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="tb_loan_repayment" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CURRENTPERIOD" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="REPAYAMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3"/>
+      <column name="REPAYDATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SOURCE_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SOURCE_REALM" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="AMOUNTINTEREST" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="AMOUNTOUTSTANDING" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="AMOUNTPRINCIPAL" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="DUEDATE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LOAN_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_LOAN_REPAYMENT_LOAN_ID" columns="LOAN_ID" ref-table="tb_loan" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_TB_DISBURSE_RECORD_REPAYMENT_ID" table="tb_disburse_record" schema="" catalog="biz" columns="REPAYMENT_ID"/>
+      <index name="UNQ_TB_LOAN_REPAYMENT_0" unique="true" columns="LOAN_ID,CURRENTPERIOD"/>
+      <index name="idx_STATUS" unique="false" columns="STATUS"/>
+    </table>
+    <table name="tb_loanrequest" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="4000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMPLOYEEID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="GUARANTEEINFO" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="HIDDEN" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="METHOD" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="MORTGAGEINFO" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MORTGAGED" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="PURPOSE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="RATE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="RISKINFO" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SERIAL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SOURCE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMESUBMIT" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TITLE" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="USER_ID" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DAYS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MONTHS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="YEARS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="GUARANTEE_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="GUARANTEE_REALM" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MAXAMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MAXTIMES" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MAXTOTALAMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MINAMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="STEPAMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="REVIEWCOMMENT" sqlType="VARCHAR" precision="4000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CLIENTPRIV" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="GUARANTYSTYLE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PRODUCTID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ENTITYID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REALM" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="loanName" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12" def="Jyc=" remarks="5a6e6ZmF5YCf5qy+5Lq65aeT5ZCN"/>
+      <column name="idNumber" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" def="Jyc=" remarks="5a6e6ZmF5YCf5qy+5Lq66Lqr5Lu96K+B5L+h5oGv"/>
+      <column name="type" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" remarks="5YCf5qy+57G75Z6L"/>
+      <column name="rate_add" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" remarks="5YCZ6KGl5pS255uK546H"/>
+      <column name="guarantee_type" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12" remarks="5L+d6Zqc57G75Z6L"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="FK_RF_REQUEST_MORTGAGETYPE_REQUEST_ID" table="rf_request_mortgagetype" schema="" catalog="biz" columns="REQUEST_ID"/>
+      <exported-key name="FK_TB_LOAN_REQUEST_ID" table="tb_loan" schema="" catalog="biz" columns="REQUEST_ID"/>
+      <exported-key name="FK_TB_LOANREQUEST_FEE_ID" table="tb_loanrequest_fee" schema="" catalog="biz" columns="ID"/>
+      <index name="UNQ_TB_LOANREQUEST_0" unique="true" columns="SERIAL"/>
+      <index name="idx_USER_ID" unique="false" columns="USER_ID"/>
+    </table>
+    <table name="tb_loanrequest_claim" schema="" catalog="biz" type="TABLE">
+      <column name="REQUEST_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CLAIM_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="REQUEST_ID"/>
+    </table>
+    <table name="tb_loanrequest_detail" schema="" catalog="biz" type="TABLE">
+      <column name="REQUESTID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LOCATION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COBORROWER_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COBORROWER_REALM" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REQUEST_CREATOR_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REQUEST_CREATOR_REALM" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="REQUESTID"/>
+    </table>
+    <table name="tb_loanrequest_fee" schema="" catalog="biz" type="TABLE">
+      <column name="INVESTINTERESTFEE" sqlType="DECIMAL" precision="10" scale="5" nullable="true" jdbcType="3"/>
+      <column name="LOANGUARANTEEFEE" sqlType="DECIMAL" precision="10" scale="5" nullable="true" jdbcType="3"/>
+      <column name="LOANINTERESTFEE" sqlType="DECIMAL" precision="10" scale="5" nullable="true" jdbcType="3"/>
+      <column name="LOANMANAGEFEE" sqlType="DECIMAL" precision="10" scale="5" nullable="true" jdbcType="3"/>
+      <column name="LOANRISKFEE" sqlType="DECIMAL" precision="10" scale="5" nullable="true" jdbcType="3"/>
+      <column name="LOANSERVICEFEE" sqlType="DECIMAL" precision="10" scale="5" nullable="true" jdbcType="3"/>
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_LOANREQUEST_FEE_ID" columns="ID" ref-table="tb_loanrequest" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tb_loanrequest_product" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MAXAMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MAXRATE" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MINAMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MINRATE" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PRODUCTKEY" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="repayMethod" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MAX_INVEST_AMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MAXTIMES" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MAXTOTALAMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MIN_INVEST_AMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="STEPAMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MAX_DURATION_DAYS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MAX_DURATION_MONTHS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MAX_DURATION_YEARS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MIN_DURATION_DAYS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MIN_DURATION_MONTHS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MIN_DURATION_YEARS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TIMELASTUPDATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <index name="PRODUCTKEY" unique="true" columns="PRODUCTKEY"/>
+    </table>
+    <table name="tb_payment_assign_reconciliation" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="BUYCUSTID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CREDITAMT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="CREDITDEALAMT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="FEE" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="ORDDATE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ORDID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PNRDATE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PNRSEQID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SELLCUSTID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TRANSSTAT" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <index name="UNQ_TB_PAYMENT_ASSIGN_RECONCILIATION_0" unique="true" columns="ORDID"/>
+    </table>
+    <table name="tb_paymentaccount" schema="" catalog="biz" type="TABLE">
+      <column name="ACCOUNTID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ACCOUNTNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ClientCode" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TIMECREATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="USERID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ACCOUNTID"/>
+      <index name="UNQ_TB_PAYMENTACCOUNT_0" unique="true" columns="ClientCode,USERID"/>
+      <index name="UNQ_TB_PAYMENTACCOUNT_1" unique="true" columns="ClientCode,ACCOUNTID"/>
+    </table>
+    <table name="tb_proof" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONTENT" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONTENTTYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="COVER" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMPLOYEE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LATITUDE" sqlType="DECIMAL" precision="12" scale="8" nullable="true" jdbcType="3"/>
+      <column name="LONGITUDE" sqlType="DECIMAL" precision="12" scale="8" nullable="true" jdbcType="3"/>
+      <column name="MOSAIC" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="PROOFTYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SOURCE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SUBMITTIME" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="OWNER_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OWNER_REALM" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CERTIFICATE_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_PROOF_CERTIFICATE_ID" columns="CERTIFICATE_ID" ref-table="tb_certificate" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_TB_PROOF_CERTIFICATE_ID" unique="false" columns="CERTIFICATE_ID"/>
+      <index name="idx_contentType" unique="false" columns="CONTENTTYPE"/>
+      <index name="idx_ownerId" unique="false" columns="OWNER_ID"/>
+    </table>
+    <table name="tb_real_estate" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AREA" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ESTIMATEDVALUE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="LASTMODIFIEDBY" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LATITUDE" sqlType="DECIMAL" precision="12" scale="8" nullable="true" jdbcType="3"/>
+      <column name="LOAN" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="LOCATION" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LONGITUDE" sqlType="DECIMAL" precision="12" scale="8" nullable="true" jdbcType="3"/>
+      <column name="SOURCE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TIMELASTUPDATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="USER_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_REAL_ESTATE_USER_ID" columns="USER_ID" ref-table="tb_user" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_TB_REALESTATE_RECORD_REAL_ESTATE_ID" table="tb_realestate_record" schema="" catalog="biz" columns="REAL_ESTATE_ID"/>
+      <index name="FK_TB_REAL_ESTATE_USER_ID" unique="false" columns="USER_ID"/>
+    </table>
+    <table name="tb_realestate_record" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AREA" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ESTIMATEDVALUE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="LATITUDE" sqlType="DECIMAL" precision="12" scale="8" nullable="true" jdbcType="3"/>
+      <column name="LOAN" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="LOCATION" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LONGITUDE" sqlType="DECIMAL" precision="12" scale="8" nullable="true" jdbcType="3"/>
+      <column name="MODIFIEDBY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SOURCE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="REAL_ESTATE_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_REALESTATE_RECORD_REAL_ESTATE_ID" columns="REAL_ESTATE_ID" ref-table="tb_real_estate" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_TB_REALESTATE_RECORD_REAL_ESTATE_ID" unique="false" columns="REAL_ESTATE_ID"/>
+    </table>
+    <table name="tb_repay_order" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="INVESTREPAYID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LOANREPAYID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ORDERDATE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ORDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STAT" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <index name="UNQ_TB_REPAY_ORDER_0" unique="true" columns="ORDERID"/>
+      <index name="UNQ_TB_REPAY_ORDER_1" unique="true" columns="INVESTREPAYID"/>
+    </table>
+    <table name="tb_role" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ClientCode" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="FK_RF_EMP_ROLE_ROLE_ID" table="rf_emp_role" schema="" catalog="biz" columns="ROLE_ID"/>
+      <exported-key name="FK_RF_PRIVILEGE_Role_ID" table="rf_privilege" schema="" catalog="biz" columns="Role_ID"/>
+      <index name="UNQ_TB_ROLE_0" unique="true" columns="ClientCode,NAME"/>
+    </table>
+    <table name="tb_socialuser" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="USER_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TIMECONNECTED" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="ID,TYPE"/>
+      <foreign-key name="FK_TB_SOCIALUSER_USER_ID" columns="USER_ID" ref-table="tb_user" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_TB_SOCIALUSER_USER_ID" unique="false" columns="USER_ID"/>
+    </table>
+    <table name="tb_ticket" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CALL_NUMBER" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CALL_OPERATION" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CATEGORY" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONTENT" sqlType="VARCHAR" precision="4000" scale="0" nullable="false" jdbcType="12"/>
+      <column name="EMPLOYEE_ID" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="HIDDEN" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="SOURCE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIME_CREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TIME_LASTMODIFIED" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TIME_SETTLED" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TITLE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="USER_ID" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="tb_ticket_reply" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="REPLIED_EMPLOYEE_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="REPLY_CONTENT" sqlType="VARCHAR" precision="4000" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TICKET_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIME_REPLIED" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="tb_transfer_request" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ACCOUNT" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="AUDITEMPLOYEE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ORDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REQUESTEMPLOYEE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="USERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="tb_ump_account" schema="" catalog="biz" type="TABLE">
+      <column name="ACCOUNTNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ACCOUNTID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ClientCode" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REGDATE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TIMECREATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="USERID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ACCOUNTNAME"/>
+      <index name="UNQ_TB_UMP_ACCOUNT_0" unique="true" columns="USERID,ClientCode"/>
+    </table>
+    <table name="tb_ump_agreement" schema="" catalog="biz" type="TABLE">
+      <column name="ACCOUNTNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CARDNO" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DEBIT" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="INSTANT" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="INVEST" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="REPAY" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TIMELASTUPDATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="USERID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ACCOUNTNAME"/>
+      <index name="UNQ_TB_UMP_AGREEMENT_0" unique="true" columns="USERID"/>
+    </table>
+    <table name="tb_ump_settle_recharge_record" schema="" catalog="biz" type="TABLE">
+      <column name="ORDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ACCOUNTID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ACCOUNTNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3"/>
+      <column name="MERDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="SETTLEDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="SETTLETIME" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TRANSACTIONID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ACCOUNTDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91" remarks="5LiO6IGU5Yqo5a+56LSm5pel5pyf"/>
+      <primary-key name="PRIMARY" columns="ORDERID"/>
+    </table>
+    <table name="tb_ump_settle_record" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ENDTIME" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="SETTLEDATE" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="SETTLETYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STARTTIME" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="STATE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <index name="UNQ_TB_UMP_SETTLE_RECORD_0" unique="true" columns="SETTLEDATE,SETTLETYPE"/>
+    </table>
+    <table name="tb_ump_settle_tender_record" schema="" catalog="biz" type="TABLE">
+      <column name="ORDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ACCOUNTDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="ACTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3"/>
+      <column name="INACCOUNTID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MERDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="OUTACCOUNTID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SETTLEDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="SETTLETIME" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TENDERACCOUNTID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TENDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TRANSACTIONID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TRANSFERTYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ORDERID"/>
+    </table>
+    <table name="tb_ump_settle_transfer_record" schema="" catalog="biz" type="TABLE">
+      <column name="ORDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ACCOUNTDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3"/>
+      <column name="INACCOUNTID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MERDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="OUTACCOUNTID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SETTLEDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="SETTLETIME" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TRANSACTIONID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ORDERID"/>
+    </table>
+    <table name="tb_ump_settle_withdraw_record" schema="" catalog="biz" type="TABLE">
+      <column name="ORDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3"/>
+      <column name="FEE" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3"/>
+      <column name="MERDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="MERID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="RECORDDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="SETTLEDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="STATE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TRANSACTIONID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ACCOUNTDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91" remarks="6IGU5Yqo5a+56LSm5pel5pyf"/>
+      <primary-key name="PRIMARY" columns="ORDERID"/>
+    </table>
+    <table name="tb_ump_tender" schema="" catalog="biz" type="TABLE">
+      <column name="LOANID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="UMPCHECKDATE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="UMPTENDERACCOUNTID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="UMPTENDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="LOANID"/>
+      <index name="UNQ_TB_UMP_TENDER_0" unique="true" columns="UMPTENDERID"/>
+    </table>
+    <table name="tb_ump_tender_transfer_record" schema="" catalog="biz" type="TABLE">
+      <column name="ORDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3"/>
+      <column name="LOANID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MERCHECKDATE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MERDATE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PARTICACCOUNTTYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PARTICTYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="RETCODE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="RETMSG" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TENDERACTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TIMELASTUPDATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TRADENO" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TRANSFERTYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="UMPACCOUNTID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="UMPACCOUNTNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="UMPTENDERACCOUNTID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="UMPTENDERID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="USERID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ORDERID"/>
+    </table>
+    <table name="tb_uplan_fund_record" schema="" catalog="biz" type="TABLE">
+      <column name="record_id" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12" remarks="6LWE6YeR6LSm5oi36K6w5b2VaWTkuLvplK4="/>
+      <column name="amount" sqlType="DECIMAL" precision="18" scale="2" nullable="false" jdbcType="3" remarks="6YeR6aKd"/>
+      <column name="description" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12" remarks="5o+P6L+w"/>
+      <column name="operation" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12" remarks="5b2T5YmN5pON5L2c54q25oCB77yI5o+Q546w44CB5YWF5YC844CC44CC44CC77yJ"/>
+      <column name="order_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" remarks="6K6i5Y2VaWQ="/>
+      <column name="user_id" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12" remarks="55So5oi3aWQ="/>
+      <column name="record_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" remarks="6K6w5b2V5pe26Ze0"/>
+      <column name="path" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12" remarks="6LWE6YeR5Y+Y5Yqo5omA55So5LiJ5pa55pSv5LuY6YCa6YGT77yI5Liw5LuY44CB572R6ZO25Zyo57q/44CC44CC44CC77yJ"/>
+      <column name="serial_number" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12" remarks="5LiJ5pa56L+U5Zue55qE5pON5L2c5rWB5rC05Y+3"/>
+      <column name="fiscal_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93" remarks="5LiJ5pa56L+U5Zue55qE5Lya6K6h5pel5pyf"/>
+      <column name="trade_status" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12" remarks="5Lqk5piT54q25oCB"/>
+      <column name="notice_time" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93" remarks="5LiJ5pa55Lqk5piT5Zue6LCD5pe26Ze0"/>
+      <column name="tx_emp_id" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12" remarks="6L+b6KGM5o+Q546w5pON5L2c55qE5ZGY5bel57yW5Y+3"/>
+      <column name="sh_emp_id" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12" remarks="5o+Q546w5ZCO5a6h5qC455qE5ZGY5bel57yW5Y+3"/>
+      <column name="tx_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93" remarks="5o+Q546w5pON5L2c5pe26Ze077yI5Y2z5LuO57O757uf5LiL6L2955Sz6K+35o+Q546w55So5oi35YiX6KGo5pe26Ze077yJ"/>
+      <column name="sh_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93" remarks="5o+Q546w5oiQ5Yqf5ZCO77yM5pON5L2c5Lq65ZGY5oqK5a+55bqU55qEY3N25YiX6KGo5a+85YWl5pys57O757uf55qE5pe26Ze0"/>
+      <primary-key name="PRIMARY" columns="record_id"/>
+      <index name="uqe_order_id" unique="true" columns="order_id"/>
+      <index name="idx_operation" unique="false" columns="operation"/>
+      <index name="idx_record_time" unique="false" columns="record_time"/>
+      <index name="idx_user_id" unique="false" columns="user_id"/>
+    </table>
+    <table name="tb_uplan_user_fund" schema="" catalog="biz" type="TABLE">
+      <column name="user_id" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12" remarks="55So5oi3aWQ="/>
+      <column name="last_amount" sqlType="DECIMAL" precision="18" scale="2" nullable="false" jdbcType="3" remarks="6LSm5oi35Ymp5L2Z6YeR6aKd"/>
+      <column name="due_in_amount" sqlType="DECIMAL" precision="18" scale="2" nullable="false" jdbcType="3" remarks="5b6F5pS26YeR6aKd"/>
+      <column name="create_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" remarks="5Yib5bu65pe26Ze0"/>
+      <column name="modify_time" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93" remarks="5L+u5pS55pe26Ze0"/>
+      <column name="frozen_amount" sqlType="DECIMAL" precision="18" scale="2" nullable="true" jdbcType="3" remarks="5o+Q546w5Ya757uT6LWE6YeR"/>
+      <primary-key name="PRIMARY" columns="user_id"/>
+      <index name="idx_create_time" unique="false" columns="create_time"/>
+      <index name="idx_modify_time" unique="false" columns="modify_time"/>
+    </table>
+    <table name="tb_user" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ClientCode" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="EMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMPLOYEEID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ENABLED" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="LOCKTYPE" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12" def="Jyc=" remarks="6LSm5Y+36KKr6ZSB5a6a5Y6f5Zug"/>
+      <column name="ENTERPRISE" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="IDNUMBER" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LASTLOGINDATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="LASTMODIFIEDBY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LOGINNAME" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="MOBILE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NAME" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NEEDCHANGEPASSWORD" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="PASSPHRASE" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="REFERRALREWARDED" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="REGISTERDATE" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="REGISTRYREWARDED" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="SALT" sqlType="VARCHAR" precision="120" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SOURCE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="REFERRAL_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REFERRAL_REALM" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CHANNEL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="GROUPID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="rmb_flag" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" remarks="6YKm5biu5aCC55So5oi35qCH6K+G"/>
+      <column name="uplan_flag" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" remarks="5LyY6YCJ6K6h5YiS55So5oi35qCH6K+G"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="FK_TB_CORPORATION_USER_USER_ID" table="tb_corporation_user" schema="" catalog="biz" columns="USER_ID"/>
+      <exported-key name="FK_TB_REAL_ESTATE_USER_ID" table="tb_real_estate" schema="" catalog="biz" columns="USER_ID"/>
+      <exported-key name="FK_TB_SOCIALUSER_USER_ID" table="tb_socialuser" schema="" catalog="biz" columns="USER_ID"/>
+      <exported-key name="FK_TB_USER_AUTHENTICATE_ID" table="tb_user_authenticate" schema="" catalog="biz" columns="ID"/>
+      <exported-key name="FK_TB_USER_CREDIT_ID" table="tb_user_credit" schema="" catalog="biz" columns="ID"/>
+      <exported-key name="FK_TB_USER_INFO_ID" table="tb_user_info" schema="" catalog="biz" columns="ID"/>
+      <exported-key name="FK_TB_USER_LOGIN_RECORD_USER_ID" table="tb_user_login_record" schema="" catalog="biz" columns="USER_ID"/>
+      <exported-key name="FK_TB_USER_RECORD_USER_ID" table="tb_user_record" schema="" catalog="biz" columns="USER_ID"/>
+      <exported-key name="FK_TB_VEHICLE_USER_ID" table="tb_vehicle" schema="" catalog="biz" columns="USER_ID"/>
+      <index name="IDNUMBER" unique="true" columns="IDNUMBER"/>
+      <index name="LOGINNAME" unique="true" columns="LOGINNAME"/>
+      <index name="MOBILE" unique="true" columns="MOBILE"/>
+      <index name="idx_registerDate" unique="false" columns="REGISTERDATE"/>
+    </table>
+    <table name="tb_user_authenticate" schema="" catalog="biz" type="TABLE">
+      <column name="IDAUTHENTICATED" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="EMAILAUTHENTICATED" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="MOBILEAUTHENTICATED" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="PAYMENTPASSPHRASE" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PAYMENTSALT" sqlType="VARCHAR" precision="120" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_USER_AUTHENTICATE_ID" columns="ID" ref-table="tb_user" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tb_user_auto_bid" schema="" catalog="biz" type="TABLE">
+      <column name="ACTIVE" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="ACTIVED_TIME" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="ENABLE" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="LAST_BID_TIME" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="MORTGAGED" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="RESERVED_AMOUNT" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="SINGLE_AMOUNT" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="MAXCREDIT" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="MAXDURATION" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="MAXRATE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="MINCREDIT" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="MINDURATION" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="MINRATE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_USER_AUTO_BID_ID" columns="ID" ref-table="tb_user_fund" ref-schema="" ref-catalog="biz" ref-columns="USERID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_RF_AUTOBID_REPAYMETHOD_USER_ID" table="rf_autobid_repaymethod" schema="" catalog="biz" columns="USER_ID"/>
+    </table>
+    <table name="tb_user_called" schema="" catalog="biz" type="TABLE">
+      <column name="user_id" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12" remarks="55So5oi3aWQ="/>
+      <column name="loginname" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12" remarks="55m75b2V5ZCN"/>
+      <column name="name" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12" remarks="55So5oi355yf5a6e5aeT5ZCN"/>
+      <column name="mobile" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12" remarks="55So5oi35omL5py65Y+356CB"/>
+      <column name="registerdate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93" remarks="55So5oi35rOo5YaM5pel5pyf"/>
+      <column name="investcount" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" remarks="55So5oi35oqV6LWE5qyh5pWw"/>
+      <column name="investamount" sqlType="DECIMAL" precision="15" scale="2" nullable="true" jdbcType="3" remarks="55So5oi35oqV6LWE5oC76aKd"/>
+      <column name="regsourcetype" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12" remarks="55So5oi35rOo5YaM5p2l5rqQ"/>
+      <column name="called" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" remarks="5piv5ZCm5YGa6L+H55S16K+d5Zue6K6/"/>
+      <primary-key name="PRIMARY" columns="user_id"/>
+      <index name="idx_registerdate" unique="false" columns="registerdate"/>
+    </table>
+    <table name="tb_user_credit" schema="" catalog="biz" type="TABLE">
+      <column name="CREDITAVAILABLE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="CREDITLIMIT" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="CREDITRANK" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LASTMODIFIEDBY" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TIMELASTUPDATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SCORE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_USER_CREDIT_ID" columns="ID" ref-table="tb_user" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_TB_CERTIFICATE_USER_ID" table="tb_certificate" schema="" catalog="biz" columns="USER_ID"/>
+      <exported-key name="FK_TB_USERCREDIT_RECORD_USER_CREDIT_ID" table="tb_usercredit_record" schema="" catalog="biz" columns="USER_CREDIT_ID"/>
+    </table>
+    <table name="tb_user_extrainfo" schema="" catalog="biz" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5Li76ZSuaWQ=" autoIncrement="true"/>
+      <column name="userid" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12" remarks="dXNlcmlk"/>
+      <column name="regsourcetype" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12" remarks="5rOo5YaM5p2l5rqQ"/>
+      <column name="registerdata" sqlType="VARCHAR" precision="2048" scale="0" nullable="true" jdbcType="12" remarks="5rOo5YaM5p2l5rqQ6ZmE5Yqg5L+h5oGv"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="idx_regsourcetype" unique="false" columns="regsourcetype"/>
+      <index name="idx_userid" unique="false" columns="userid"/>
+    </table>
+    <table name="tb_user_fund" schema="" catalog="biz" type="TABLE">
+      <column name="USERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AVAILABLE_AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="DEPOSIT_AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="DUE_IN_AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="DUE_OUT_AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="FROZEN_AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TIMELASTUPDATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TRANSFER_AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="WITHDRAW_AMOUNT" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <primary-key name="PRIMARY" columns="USERID"/>
+      <exported-key name="FK_TB_FUND_ACCOUNT_USER_ID" table="tb_fund_account" schema="" catalog="biz" columns="USER_ID"/>
+      <exported-key name="FK_TB_FUND_RECORD_USER_ID" table="tb_fund_record" schema="" catalog="biz" columns="USER_ID"/>
+      <exported-key name="FK_TB_USER_AUTO_BID_ID" table="tb_user_auto_bid" schema="" catalog="biz" columns="ID"/>
+    </table>
+    <table name="tb_user_giftcard" schema="" catalog="biz" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5Li76ZSuaWQ=" autoIncrement="true"/>
+      <column name="mobile" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="userId" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12" remarks="dXNlcmlk"/>
+      <column name="cardType" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" remarks="57qi5YyF57G75Z6L"/>
+      <column name="userIdRealm" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12" remarks="57qi5YyF5Li75Lq66KeS6Imy"/>
+      <column name="startDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" remarks="5byA5aeL5pe26Ze0"/>
+      <column name="lastModifyDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" remarks="5pyA5ZCO5L+u5pS55pe26Ze0"/>
+      <column name="endDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" remarks="57uT5p2f5pe26Ze0"/>
+      <column name="enabled" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="balance" sqlType="DECIMAL" precision="38" scale="2" nullable="true" jdbcType="3"/>
+      <column name="availableBalance" sqlType="DECIMAL" precision="38" scale="2" nullable="true" jdbcType="3"/>
+      <column name="giftPercent" sqlType="DECIMAL" precision="38" scale="2" nullable="true" jdbcType="3" remarks="5oqY546w546H"/>
+      <column name="relatedUserId" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12" remarks="cmVsYXRlZHVzZXJpZA=="/>
+      <column name="relatedUserRealm" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12" remarks="cmVsYXRlZHVzZXJyZWFsbQ=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="tb_user_giftcard_record" schema="" catalog="biz" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5Li76ZSuaWQ=" autoIncrement="true"/>
+      <column name="cardId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="Y2FyZGlk"/>
+      <column name="investId" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12" remarks="5oqV6LWE5LqL5Lu25a+55bqU55qEb2Rlcklk"/>
+      <column name="actionType" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" remarks="5LqL5Lu257G75Z6L"/>
+      <column name="status" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="amount" sqlType="DECIMAL" precision="38" scale="2" nullable="true" jdbcType="3" remarks="6YeR6aKd"/>
+      <column name="recordDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" remarks="5LqL5Lu25pe26Ze0"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="tb_user_group" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PARENTID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TIMELASTUPDATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="tb_user_info" schema="" catalog="biz" type="TABLE">
+      <column name="PRIV" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CAREER_STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="WORK_CITY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="JOB_POSITION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="WORK_PROVINCE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MONTHLY_SALARY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TOTAL_YEAR_OF_SERVICE" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="WORK_MAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="YEAR_OF_SERVICE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COMPANY_ADDRESS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COMPANY_SIZE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COMPANY_INDUSTRY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COMPANY_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COMPANY_PHONE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COMPANY_TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CC_MOBILE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CC_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CC_RELATION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EC_MOBILE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EC_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EC_RELATION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OC_MOBILE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OC_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OC_RELATION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CAR" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="CAR_LOAN" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="CAR_NUMBER" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="HOUSE" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="HOUSE_LOAN" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="HOUSE_NUMBER" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="AVATAR" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CHILDREN" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="DATE_OF_BIRTH" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="ETHNIC" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="HOUSE_STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="HUKOU_TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MALE" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="MARITAL_STATUS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EDUCATION_LEVEL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ENROLLMENT_YEAR" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SCHOOL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CURRENT_ADDRESS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CURRENT_PHONE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="HUKOU_CITY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="HUKOU_PROVINCE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NATIVE_CITY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NATIVE_PROVINCE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="WECHAT" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="WEIBO" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_USER_INFO_ID" columns="ID" ref-table="tb_user" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tb_user_login_record" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CREDENTIAL" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LOGININFO" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LOGINTIME" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="SOURCE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SUCCESS" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="USER_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_USER_LOGIN_RECORD_USER_ID" columns="USER_ID" ref-table="tb_user" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_TB_USER_LOGIN_RECORD_USER_ID" unique="false" columns="USER_ID"/>
+      <index name="IDX_LOGINTIME" unique="false" columns="LOGINTIME"/>
+    </table>
+    <table name="tb_user_record" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="IDNUMBER" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LOGINNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MOBILE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MODIFIEDBY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="USER_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_USER_RECORD_USER_ID" columns="USER_ID" ref-table="tb_user" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_TB_USER_RECORD_USER_ID" unique="false" columns="USER_ID"/>
+    </table>
+    <table name="tb_user_shipping_address" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ALIAS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CONTACT" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DEFAULTADDRESS" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="DETAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REALNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TIMELASTUPDATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="USERID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <index name="INDEX_TB_USER_SHIPPING_ADDRESS_USERID" unique="false" columns="USERID"/>
+    </table>
+    <table name="tb_usercredit_record" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CREDITAVAILABLE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="CREDITLIMIT" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="CREDITRANK" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="MODIFIEDBY" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="SCORE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="USER_CREDIT_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_USERCREDIT_RECORD_USER_CREDIT_ID" columns="USER_CREDIT_ID" ref-table="tb_user_credit" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_TB_USERCREDIT_RECORD_USER_CREDIT_ID" unique="false" columns="USER_CREDIT_ID"/>
+    </table>
+    <table name="tb_vehicle" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="BRAND" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ESTIMATEDVALUE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="LASTMODIFIEDBY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MILEAGE" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MODEL" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OPERATING" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
+      <column name="PLATENUMBER" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PRICEOFPURCHASE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="SOURCE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMECREATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TIMELASTUPDATED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="VEHICLELICENSE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="YEAROFPURCHASE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="OWNER_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OWNER_REALM" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="USER_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_VEHICLE_USER_ID" columns="USER_ID" ref-table="tb_user" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_TB_VEHICLE_RECORD_VEHICLE_ID" table="tb_vehicle_record" schema="" catalog="biz" columns="VEHICLE_ID"/>
+      <index name="FK_TB_VEHICLE_USER_ID" unique="false" columns="USER_ID"/>
+    </table>
+    <table name="tb_vehicle_record" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ESTIMATEDVALUE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="MODEL" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="MODIFIEDBY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PLATENUMBER" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PRICEOFPURCHASE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="SOURCE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TIMERECORDED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="VEHICLELICENSE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="YEAROFPURCHASE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="VEHICLE_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_VEHICLE_RECORD_VEHICLE_ID" columns="VEHICLE_ID" ref-table="tb_vehicle" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_TB_VEHICLE_RECORD_VEHICLE_ID" unique="false" columns="VEHICLE_ID"/>
+    </table>
+    <table name="tb_virtual_account" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ACCOUNTNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="BALANCE" sqlType="DECIMAL" precision="38" scale="0" nullable="true" jdbcType="3"/>
+      <column name="ISPRIMARY" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="ISVALID" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="LASTMODIFIED" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="OWNERNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OWNER_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OWNER_REALM" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="FK_TB_VIRTUAL_BOOKING_RECORD_VIRTUAL_ACCOUNT_ID" table="tb_virtual_booking_record" schema="" catalog="biz" columns="VIRTUAL_ACCOUNT_ID"/>
+    </table>
+    <table name="tb_virtual_booking_record" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="DECIMAL" precision="38" scale="0" nullable="false" jdbcType="3"/>
+      <column name="AMOUNTCLEARED" sqlType="DECIMAL" precision="38" scale="0" nullable="true" jdbcType="3"/>
+      <column name="LOANID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OWNERNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TIMEHAPPENED" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TIMERECORD" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="VIRTUALBOOKINGRECORDSTATUS" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="VIRTUALBOOKINGRECORDTYPE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="OWNER_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OWNER_REALM" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VIRTUAL_ACCOUNT_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VIRTUAL_CASH_ACCOUNT_ID" sqlType="VARCHAR" precision="36" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LOANTITLE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="FK_TB_VIRTUAL_BOOKING_RECORD_VIRTUAL_ACCOUNT_ID" columns="VIRTUAL_ACCOUNT_ID" ref-table="tb_virtual_account" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="TB_VIRTUAL_BOOKING_RECORD_VIRTUAL_CASH_ACCOUNT_ID" columns="VIRTUAL_CASH_ACCOUNT_ID" ref-table="tb_virtual_cash_record" ref-schema="" ref-catalog="biz" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_TB_VIRTUAL_BOOKING_RECORD_VIRTUAL_ACCOUNT_ID" unique="false" columns="VIRTUAL_ACCOUNT_ID"/>
+      <index name="TB_VIRTUAL_BOOKING_RECORD_VIRTUAL_CASH_ACCOUNT_ID" unique="false" columns="VIRTUAL_CASH_ACCOUNT_ID"/>
+    </table>
+    <table name="tb_virtual_cash_record" schema="" catalog="biz" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="36" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AMOUNT" sqlType="DECIMAL" precision="38" scale="0" nullable="false" jdbcType="3"/>
+      <column name="TIMEHAPPENED" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TIMERECORD" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TRANSACTIONID" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TRANSACTIONNO" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VIRTUALCASHRECORDSTATUS" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="TB_VIRTUAL_BOOKING_RECORD_VIRTUAL_CASH_ACCOUNT_ID" table="tb_virtual_booking_record" schema="" catalog="biz" columns="VIRTUAL_CASH_ACCOUNT_ID"/>
+    </table>
+  </data-source>
+</component>
